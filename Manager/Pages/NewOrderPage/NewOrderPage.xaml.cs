@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading;
 using Manager.DataModels;
 
 namespace Manager.Pages
@@ -14,7 +15,7 @@ namespace Manager.Pages
         { 
             get { return myOrder; } 
             set 
-            { 
+            {
                 myOrder = value; 
                 NotifyPropertyChanged("MyOrder");
                 if(PageNav != null)
@@ -36,6 +37,15 @@ namespace Manager.Pages
             PageSide = new NewOrderPageSide(MyOrder, pageLoader);
             PageNav = new NewOrderPageNav(MyOrder, pageLoader);
             InitPage(pageLoader);
+        }
+
+        public NewOrderPage(PageLoader pageLoader, OrderForm orderForm) : base(pageLoader)
+        {
+            InitializeComponent();
+            DataContext = this;
+            MyOrder = orderForm;
+            PageSide = new NewOrderPageSide(MyOrder, pageLoader);
+            PageNav = new NewOrderPageNav(MyOrder, pageLoader);
         }
 
         async void InitPage(PageLoader pageLoader)

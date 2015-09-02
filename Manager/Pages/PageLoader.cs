@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -31,12 +28,16 @@ namespace Manager.Pages
             this.sideContentArea = sideContentArea;
         }
 
-        public PageBase LoadPage(Type pageType)
-        {
-            PageBase newPage = (PageBase)Activator.CreateInstance(pageType, this);
-            LoadPage(newPage);
-            return newPage;
-        }
+        //public PageBase LoadPage(Type pageType, params object[] args)
+        //{
+        //    PageBase newPage = null;
+        //    if(args == null || args.Length == 0)
+        //        newPage = (PageBase)Activator.CreateInstance(pageType, this);
+        //    else
+        //        newPage = (PageBase)Activator.CreateInstance(pageType, this, args);
+        //    LoadPage(newPage);
+        //    return newPage;
+        //}
 
         public void LoadPage(PageBase page)
         {

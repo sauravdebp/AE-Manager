@@ -46,25 +46,29 @@ namespace Manager.Pages
             }
         }
 
-        public List<double> VatList { get; set; }
-
-        public List<double> CstList { get; set; }
-
-        public ChallanPage(PageLoader pageLoader) : base(pageLoader)
+        public ChallanPage(PageLoader pageLoader, OrderForm orderForm) : base(pageLoader)
         {
             InitializeComponent();
             DataContext = this;
+            OrderChallan = new Challan();
+            OrderForm = orderForm;
+            PageNav = new ChallanPageNav(pageLoader, OrderChallan, this);
+            PageSide = new ChallanPageSide(pageLoader, OrderChallan);
             InitPage(pageLoader);
+        }
+
+        public ChallanPage(PageLoader pageLoader, Challan orderChallan) : base(pageLoader)
+        {
+            InitializeComponent();
+            DataContext = this;
+            OrderChallan = orderChallan;
+            PageNav = new ChallanPageNav(pageLoader, OrderChallan, this);
+            PageSide = new ChallanPageSide(pageLoader, OrderChallan);
         }
 
         async void InitPage(PageLoader pageLoader)
         {
-            OrderChallan = new Challan();
             await OrderChallan.AssignChallanBookSerialNo();
-            PageNav = new ChallanPageNav(pageLoader, OrderChallan, this);
-            PageSide = new ChallanPageSide(pageLoader, OrderChallan);
-            VatList = await Tax.RetriveTaxesByType("VAT");
-            CstList = await Tax.RetriveTaxesByType("CST");
         }
 
         void NotifyPropertyChanged(string propertyName)

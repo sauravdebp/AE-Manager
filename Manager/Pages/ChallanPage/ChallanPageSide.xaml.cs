@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Manager.DataModels;
 
 namespace Manager.Pages
@@ -24,9 +11,27 @@ namespace Manager.Pages
     {
         public Challan Challan { get; set; }
 
-        public List<double> VatList { get; set; }
+        List<double> vatList;
+        public List<double> VatList
+        {
+            get { return vatList; }
+            set
+            {
+                vatList = value;
+                NotifyPropertyChanged(nameof(VatList));
+            }
+        }
 
-        public List<double> CstList { get; set; }
+        List<double> cstList;
+        public List<double> CstList
+        {
+            get { return cstList; }
+            set
+            {
+                cstList = value;
+                NotifyPropertyChanged(nameof(CstList));
+            }
+        }
 
         public ChallanPageSide(PageLoader pageLoader, Challan challan) : base(pageLoader)
         {
@@ -34,10 +39,10 @@ namespace Manager.Pages
             DataContext = this;
             Challan = challan;
             NotifyPropertyChanged("Challan");
-            
+            InitPage();
         }
 
-        public async void InitPage(PageLoader pageLoader)
+        public async void InitPage()
         {
             combo_challanTypes.ItemsSource = await ChallanType.RetrieveAllChallanTypes();
             VatList = await Tax.RetriveTaxesByType("VAT");
@@ -46,7 +51,7 @@ namespace Manager.Pages
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        void NotifyPropertyChanged(String propertyName)
+        void NotifyPropertyChanged(string propertyName)
         {
             var handler = PropertyChanged;
             if(handler != null)

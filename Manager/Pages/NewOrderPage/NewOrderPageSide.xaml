@@ -12,13 +12,13 @@
     </UserControl.Resources>
     
     <Grid>
-        <StackPanel>
+        <StackPanel DataContext="{Binding MyOrder}">
             <TextBlock>Order ID :</TextBlock>
-            <TextBlock Text="{Binding MyOrder.OrderId}"></TextBlock>
+            <TextBlock Text="{Binding OrderId}"></TextBlock>
             <TextBlock>Total Amount :</TextBlock>
-            <TextBlock Text="{Binding MyOrder.OrderTotalAmount, Converter={StaticResource AmountFormatConverter}}" />
+            <TextBlock Text="{Binding OrderTotalAmount, Converter={StaticResource AmountFormatConverter}}" />
             <TextBlock>POC No :</TextBlock>
-            <TextBlock Text="{Binding MyOrder.PocNo}" />
+            <TextBlock Text="{Binding PocNo}" />
             <!--<TextBlock>Received Amount :</TextBlock>
             <TextBlock Text="{Binding MyOrder.PaymentRcvd}" />-->
         </StackPanel>

@@ -39,21 +39,17 @@ namespace Manager.Pages
 
         private void but_ViewOrder_Click(object sender, RoutedEventArgs e)
         {
-            NewOrderPage page = (NewOrderPage)PageLoader.LoadPage(typeof(NewOrderPage));
-            page.MyOrder = OrderForm;
+            PageLoader.LoadPage(new NewOrderPage(PageLoader, OrderForm));
         }
 
         private void but_GenerateChallan_Click(object sender, RoutedEventArgs e)
         {
-            ChallanPage page = PageLoader.LoadPage(typeof(ChallanPage)) as ChallanPage;
-            page.OrderForm = OrderForm;
+            PageLoader.LoadPage(new ChallanPage(PageLoader, OrderForm));
         }
 
         private async void but_ViewChallan_Click(object sender, RoutedEventArgs e)
         {
-            ChallanPage page = (ChallanPage)PageLoader.LoadPage(typeof(ChallanPage));
-            page.OrderChallan = await OrderForm.RetrieveOrderChallan();
-            page.OrderChallan.OrderForm = OrderForm;
+            PageLoader.LoadPage(new ChallanPage(PageLoader, await OrderForm.RetrieveOrderChallan()));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

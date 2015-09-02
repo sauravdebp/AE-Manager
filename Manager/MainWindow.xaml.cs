@@ -30,7 +30,7 @@ namespace Manager
             SetPanels(ContentArea, NavContentArea, SideContentArea);
             DataContext = this;
             PageLoadedEvent += MainWindow_PageLoadedEvent;
-            LoadPage(typeof(MenuPage));
+            LoadPage(new MenuPage(this));
         }
 
         void MainWindow_PageLoadedEvent(object sender, PageLoadedEventArgs e)

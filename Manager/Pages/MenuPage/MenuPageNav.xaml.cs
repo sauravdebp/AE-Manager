@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace Manager.Pages
 {
@@ -27,17 +14,20 @@ namespace Manager.Pages
 
         private void but_NewOrder_Click(object sender, RoutedEventArgs e)
         {
-            PageLoader.LoadPage(typeof(NewOrderPage));
+            //PageLoader.LoadPage(typeof(NewOrderPage));
+            PageLoader.LoadPage(new NewOrderPage(PageLoader));
         }
 
         private void but_AllOrders_Click(object sender, RoutedEventArgs e)
         {
-            PageLoader.LoadPage(typeof(AllOrdersPage));
+            //PageLoader.LoadPage(typeof(AllOrdersPage));
+            PageLoader.LoadPage(new AllOrdersPage(PageLoader));
         }
 
         private void but_Inventory_Click(object sender, RoutedEventArgs e)
         {
-            PageLoader.LoadPage(typeof(InventoryPage));
+            //PageLoader.LoadPage(typeof(InventoryPage));
+            PageLoader.LoadPage(new InventoryPage(PageLoader));
         }
     }
 }

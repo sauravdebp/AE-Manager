@@ -11,7 +11,7 @@ namespace Manager.Utilities.Converters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return GetAmountInWords((int)value) + " Only";
+            return (GetAmountInWords((int)value) + "Only").Trim();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -19,49 +19,49 @@ namespace Manager.Utilities.Converters
             throw new NotImplementedException();
         }
 
-        String GetWord(int digit)
+        string GetWord(int digit)
         {
             switch(digit)
             {
-                case 1: return "One";
-                case 2: return "Two";
-                case 3: return "Three";
-                case 4: return "Four";
-                case 5: return "Five";
-                case 6: return "Six";
-                case 7: return "Seven";
-                case 8: return "Eight";
-                case 9: return "Nine";
-                case 10: return "Ten";
-                case 11: return "Eleven";
-                case 12: return "Twelve";
-                case 13: return "Thirteen";
-                case 14: return "Fourteen";
-                case 15: return "Fifteen";
-                case 16: return "Sixteen";
-                case 17: return "Seventeen";
-                case 18: return "Eighteen";
-                case 19: return "Nineteen";
-                case 20: return "Twenty";
-                case 30: return "Thirty";
-                case 40: return "Forty";
-                case 50: return "Fifty";
-                case 60: return "Sixty";
-                case 70: return "Seventy";
-                case 80: return "Eighty";
-                case 90: return "Ninety";
-                case 100: return "Hundred";
-                case 1000: return "Thousand";
-                case 100000: return "Lakh";
-                case 10000000: return "Crore";
+                case 1: return "One ";
+                case 2: return "Two ";
+                case 3: return "Three ";
+                case 4: return "Four ";
+                case 5: return "Five ";
+                case 6: return "Six ";
+                case 7: return "Seven ";
+                case 8: return "Eight ";
+                case 9: return "Nine ";
+                case 10: return "Ten ";
+                case 11: return "Eleven ";
+                case 12: return "Twelve ";
+                case 13: return "Thirteen ";
+                case 14: return "Fourteen ";
+                case 15: return "Fifteen ";
+                case 16: return "Sixteen ";
+                case 17: return "Seventeen ";
+                case 18: return "Eighteen ";
+                case 19: return "Nineteen ";
+                case 20: return "Twenty ";
+                case 30: return "Thirty ";
+                case 40: return "Forty ";
+                case 50: return "Fifty ";
+                case 60: return "Sixty ";
+                case 70: return "Seventy ";
+                case 80: return "Eighty ";
+                case 90: return "Ninety ";
+                case 100: return "Hundred ";
+                case 1000: return "Thousand ";
+                case 100000: return "Lakh ";
+                case 10000000: return "Crore ";
             }
             return null;
         }
 
-        String GetAmountInWords_helper(int amount)
+        string GetAmountInWords_helper(int amount)
         {
-            String words = "";
-            String phrase;
+            string words = "";
+            string phrase;
             int place = 1;
             int digit;
             int tensUnitsNumber = amount - ((amount / 100) * 100);
@@ -83,9 +83,9 @@ namespace Manager.Utilities.Converters
                 else
                     phrase = GetWord(digit);
                 if (place > 10 && digit != 0)
-                    phrase += " " + GetWord(place);
+                    phrase += GetWord(place);
 
-                words = phrase + " " + words;
+                words = phrase + words;
                 amount /= 10;
                 place *= 10;
             }
@@ -93,10 +93,10 @@ namespace Manager.Utilities.Converters
             return words;
         }
 
-        String GetAmountInWords(int amount)
+        string GetAmountInWords(int amount)
         {
-            String words = "";
-            String stepPhrase;
+            string words = "";
+            string stepPhrase;
             int subNumber = amount;
             int step = 1;
 
@@ -115,10 +115,10 @@ namespace Manager.Utilities.Converters
                     subNumber = subNumber - ((subNumber / 100) * 100);
                     amount = amount / 100;
                     if(subNumber != 0 || amount == 0)
-                        stepPhrase = " " + GetWord(step);
+                        stepPhrase = GetWord(step);
                     step *= 100;
                 }
-                words = GetAmountInWords_helper(subNumber) + stepPhrase + " " + words;
+                words = GetAmountInWords_helper(subNumber) + stepPhrase + words;
             }
 
             return words;

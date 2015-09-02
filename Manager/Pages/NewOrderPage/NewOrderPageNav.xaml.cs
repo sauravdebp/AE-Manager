@@ -77,13 +77,12 @@ namespace Manager.Pages
 
         private void but_GenerateChallan_Click(object sender, RoutedEventArgs e)
         {
-            ChallanPage page = PageLoader.LoadPage(typeof(ChallanPage)) as ChallanPage;
-            page.OrderForm = MyOrder;
+            PageLoader.LoadPage(new ChallanPage(PageLoader, MyOrder));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        void NotifyPropertyChanged(String propertyName)
+        void NotifyPropertyChanged(string propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null)
@@ -94,9 +93,7 @@ namespace Manager.Pages
 
         private async void but_ViewChallan_Click(object sender, RoutedEventArgs e)
         {
-            ChallanPage page = PageLoader.LoadPage(typeof(ChallanPage)) as ChallanPage;
-            page.OrderChallan = await MyOrder.RetrieveOrderChallan();
-            page.OrderChallan.OrderForm = MyOrder;
+            PageLoader.LoadPage(new ChallanPage(PageLoader, await MyOrder.RetrieveOrderChallan()));
         }
     }
 }
