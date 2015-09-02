@@ -1,0 +1,37 @@
+﻿<local:PageBase x:Class="Manager.Pages.NewOrderPageNav"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:local="clr-namespace:Manager.Pages"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:converters="clr-namespace:Manager.Utilities.Converters"
+                mc:Ignorable="d" 
+                d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:ObjectStatusConverter x:Key="VisibilityConverter" />
+    </UserControl.Resources>
+    
+    <Grid>
+        <StackPanel>
+            <Button x:Name="but_ResetOrderForm"
+                    Click="but_ResetOrderForm_Click"
+                    Visibility="{Binding MyOrder, Converter={StaticResource VisibilityConverter}, ConverterParameter=ResetOrderForm}">Reset Order Form</Button>
+            <Button x:Name="but_SaveOrder"
+                    Click="but_SaveOrder_Click"
+                    Visibility="{Binding MyOrder, Converter={StaticResource VisibilityConverter}, ConverterParameter=SaveOrder}">Save Order</Button>
+            <Button x:Name="but_DiscardOrder"
+                    Visibility="{Binding MyOrder, Converter={StaticResource VisibilityConverter}, ConverterParameter=DiscardOrder}">Discard Order</Button>
+            <Button x:Name="but_ApproveOrder"
+                    Click="but_ApproveOrder_Click"
+                    Visibility="{Binding MyOrder, Converter={StaticResource VisibilityConverter}, ConverterParameter=ApproveOrder}">Approve Order</Button>
+            <Button x:Name="but_CancelOrder"
+                    Visibility="{Binding MyOrder, Converter={StaticResource VisibilityConverter}, ConverterParameter=CancelOrder}">Cancel Order</Button>
+            <Button x:Name="but_GenerateChallan"
+                    Click="but_GenerateChallan_Click"
+                    Visibility="{Binding MyOrder, Converter={StaticResource VisibilityConverter}, ConverterParameter=GenerateChallan}">Generate Challan</Button>
+            <Button x:Name="but_ViewChallan"
+                    Click="but_ViewChallan_Click"
+                    Visibility="{Binding MyOrder, Converter={StaticResource VisibilityConverter}, ConverterParameter=ViewChallan}">View Challan</Button>
+        </StackPanel>
+    </Grid>
+</local:PageBase>

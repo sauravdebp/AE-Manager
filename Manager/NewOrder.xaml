@@ -1,0 +1,106 @@
+﻿<Window x:Class="Manager.NewOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Manager"
+        xmlns:userControl="clr-namespace:Manager.UserControls"
+        xmlns:converters="clr-namespace:Manager.Utilities.Converters"
+        Title="NewOrder - InfiGrail" Height="400" Width="400" WindowState="Maximized"
+        FontFamily="SegoeUI" FontSize="20">
+
+    <Window.Resources>
+        <converters:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <local:VisibilityConverter x:Key="VisibilityConverter" />
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Menu Width="Auto" Height="20" DockPanel.Dock="Top">
+            <MenuItem Header="Manager">
+                <MenuItem Header="Select Client" />
+                <MenuItem Header="New Client" />
+                <Separator />
+                <MenuItem>
+                    <MenuItem.Header>
+                        <DockPanel>
+                            <TextBlock>Exit</TextBlock>
+                            <TextBlock Width="10"></TextBlock>
+                            <TextBlock HorizontalAlignment="Right">F2</TextBlock>
+                        </DockPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <Grid Grid.Row="1" Margin="0, 10, 0, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+            
+            <!--<Grid Margin="10, 0, 10, 10" x:Name="newOrderForm">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                --><!-- Client Details --><!--
+                <userControl:ClientDetailsControl OrderForm="{Binding MyOrder, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Window}}" 
+                                                  Margin="0, 0, 0, 10"/>
+
+                --><!-- Order Control--><!--
+                <userControl:OrderFormUserControl Grid.Row="1"
+                                                  OrderForm="{Binding MyOrder, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Window}}"/>
+            </Grid>-->
+            
+            <!--<userControl:ChallanControl x:Name="challan" Visibility="Collapsed"
+                                        Margin="10, 0, 10, 10" 
+                                        OrderForm="{Binding MyOrder, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Window}}"/>-->
+
+            <Grid Grid.Column="1" Background="Aquamarine">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Margin="10">
+                    <TextBlock>Order ID : </TextBlock>
+                    <TextBlock Text="{Binding MyOrder.OrderId}"></TextBlock>
+                    <TextBlock>Total Amount : </TextBlock>
+                    <TextBlock Text="{Binding MyOrder.OrderTotalAmount, Converter={StaticResource AmountFormatConverter}}" />
+                    <TextBlock>POC No : </TextBlock>
+                    <TextBlock Text="{Binding MyOrder.PocNo}" />
+                    <TextBlock>Received Amount : </TextBlock>
+                    <TextBlock Text="{Binding MyOrder.PaymentRcvd}" />
+                </StackPanel>
+                <StackPanel Grid.Row="1" Margin="10">
+                    <Button x:Name="but_ResetOrderForm"
+                            Click="but_ResetOrderForm_Click"
+                            Visibility="{Binding MyOrder.IsPersist, Converter={StaticResource VisibilityConverter}, ConverterParameter=OnBoolFalse}">Reset Order Form</Button>
+                    <Button x:Name="but_SaveOrder"
+                            Click="but_SaveOrder_Click"
+                            Visibility="{Binding MyOrder.IsPersist, Converter={StaticResource VisibilityConverter}, ConverterParameter=OnBoolFalse}">Save Order</Button>
+                    <Button x:Name="but_DiscardOrder"
+                            Visibility="{Binding MyOrder.IsPersist, Converter={StaticResource VisibilityConverter}, ConverterParameter=OnBoolFalse}">Discard Order</Button>
+                    <Button x:Name="but_ApproveOrder"
+                            Click="but_ApproveOrder_Click"
+                            Visibility="{Binding MyOrder.IsApproved, Converter={StaticResource VisibilityConverter}, ConverterParameter=OnBoolFalse}">Approve Order</Button>
+                    <Button x:Name="but_CancelOrder"
+                            Visibility="{Binding MyOrder.IsPersist, Converter={StaticResource VisibilityConverter}, ConverterParameter=OnBoolTrue}">Cancel Order</Button>
+                    <Button x:Name="but_GenerateChallan"
+                            Click="but_GenerateChallan_Click">Generate Challan</Button>
+                    <Button x:Name="but_Print"
+                            Click="but_Print_Click">Print</Button>
+                    <!--Visibility="{Binding MyOrder.IsPersist, Converter={StaticResource VisibilityConverter}, ConverterParameter=OnBoolTrue}"-->
+                </StackPanel>
+            </Grid>
+        </Grid>
+        
+        <Grid Grid.Row="2">
+            <StatusBar Background="Beige" Height="30">
+                <TextBlock Text="{Binding AppStatus.AppStatusMessage}"></TextBlock>
+            </StatusBar>
+        </Grid>
+    </Grid>
+</Window>

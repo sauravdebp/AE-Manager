@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="Manager.UserControls.ChallanPageControls.ChallanHeader"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" FontFamily="Calibri">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock TextAlignment="Center"
+                       FontSize="14"
+                       FontWeight="Bold"
+                       Text="{Binding OrderChallan.ChallanType.TypeName}" />
+            <TextBlock TextAlignment="Center"
+                       FontSize="14"
+                       FontWeight="Bold"
+                       Text=" INVOICE" />
+        </StackPanel>
+        <TextBlock Grid.Row="1"
+                   TextAlignment="Center"
+                   FontWeight="Bold"
+                   FontSize="36">AQUATEK ENGINEERS</TextBlock>
+        <TextBlock Grid.Row="2"
+                   TextAlignment="Center"
+                   FontSize="8"
+                   FontStyle="Italic"
+                   FontWeight="Bold">Manufacturer  Trader of : PET JARS,PREFORMS,BOTTLES,CAPS, RO/DM/MB SOFTENER  RELATED MACHINES</TextBlock>
+        <TextBlock Grid.Row="3"
+                   TextAlignment="Center"
+                   FontSize="8"
+                   FontStyle="Italic"
+                   FontWeight="Bold">PLOT NO. 57, ECOTECH III,UDYOG KENDRA EXTENSION II,GREATER NOIDA - 201 306. R.OFF : A 4/5,SEC - 80, PH-II,NOIDA - 201 305</TextBlock>
+        <TextBlock Grid.Row="4"
+                   TextAlignment="Center"
+                   FontSize="9"
+                   FontStyle="Italic"
+                   FontWeight="Bold">email : aquatekengineers@gmail.com</TextBlock>
+    </Grid>
+</UserControl>

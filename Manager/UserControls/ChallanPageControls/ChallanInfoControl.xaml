@@ -1,0 +1,233 @@
+﻿<UserControl x:Class="Manager.UserControls.ChallanPageControls.ChallanInfoControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:Manager.Utilities.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    
+    <UserControl.Resources>
+        <converters:DateTimeConverter x:Key="DateTimeConverter" />
+        <converters:ObjectStatusConverter x:Key="VisibilityConverter" />
+    </UserControl.Resources>
+    
+    <Grid>
+        <StackPanel>
+            <!-- Challan Info -->
+            <Grid DataContext="{Binding OrderChallan}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                
+                <!-- TIN -->
+                <Grid>                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border BorderThickness="1, 1, 1, 0" BorderBrush="Black" Grid.ColumnSpan="2"/>
+                    <TextBlock Margin="3">TIN</TextBlock>
+                    <TextBlock Grid.Column="1">09866000552</TextBlock>
+                </Grid>
+
+                <!-- Mobile -->
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border BorderThickness="1, 1, 1, 0" BorderBrush="Black" Grid.ColumnSpan="2"/>
+                    <TextBlock Margin="3">Mobile</TextBlock>
+                    <TextBlock Grid.Column="1">0918973143/9810078390</TextBlock>
+                </Grid>
+
+                <!-- Client -->
+                <Grid Grid.Row="2" Grid.RowSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border BorderThickness="1, 1, 1, 0" BorderBrush="Black" Grid.ColumnSpan="2"/>
+                    <TextBlock Margin="3">TO</TextBlock>
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="{Binding OrderForm.Client.ClientName}" TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding OrderForm.Client.MainAddress}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Grid>
+                
+                <!-- Contact Person -->
+                <Grid Grid.Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border BorderThickness="1, 1, 1, 0" BorderBrush="Black" Grid.ColumnSpan="2"/>
+                    <TextBlock Margin="3">Contact Person</TextBlock>
+                    <TextBlock Grid.Column="1" Text="{Binding OrderForm.Client.PrimaryContactName}"></TextBlock>
+                </Grid>
+
+                <!-- Contact No-->
+                <Grid Grid.Row="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border BorderThickness="1, 1, 1, 0" BorderBrush="Black" Grid.ColumnSpan="2"/>
+                    <TextBlock Margin="3">Contact No</TextBlock>
+                    <TextBlock Grid.Column="1" Text="{Binding OrderForm.Client.PrimaryContact}"></TextBlock>
+                </Grid>
+
+                <!-- Name of transporter -->
+                <Grid Grid.Row="7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border BorderThickness="1, 1, 1, 0" BorderBrush="Black" Grid.ColumnSpan="2"/>
+                    <TextBlock Margin="3">Name of transporter</TextBlock>
+                    <TextBlock Grid.Column="1" Margin="3"
+                               Text="{Binding TransporterName}" />
+                </Grid>
+
+                <!-- purchaser TIN -->
+                <Grid Grid.Row="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border BorderThickness="1, 1, 1, 0" BorderBrush="Black" Grid.ColumnSpan="2"/>
+                    <TextBlock Margin="3">Purchaser TIN</TextBlock>
+                    <TextBlock Grid.Column="1" Text="{Binding OrderForm.Client.TinNo}"></TextBlock>
+                </Grid>
+                
+                <!-- Owner company TIN DATE-->
+                <Grid Grid.Row="0" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border BorderThickness="0, 1, 1, 0" BorderBrush="Black" Grid.ColumnSpan="2"/>
+                    <TextBlock Margin="3">Date</TextBlock>
+                    <TextBlock Grid.Column="1">01-04-2000</TextBlock>
+                </Grid>
+
+                <!-- Book No-->
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border BorderThickness="0, 1, 1, 0" BorderBrush="Black" Grid.ColumnSpan="2"/>
+                    <TextBlock Margin="3">Book No</TextBlock>
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding BookNo}"></TextBlock>
+                </Grid>
+                
+                <!-- Sl. No-->
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border BorderThickness="0, 1, 1, 0" BorderBrush="Black" Grid.ColumnSpan="2"/>
+                    <TextBlock Margin="3">Sl. No</TextBlock>
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding ChallanNo}"></TextBlock>
+                </Grid>
+
+                <!-- Date -->
+                <Grid Grid.Row="3" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border BorderThickness="0, 1, 1, 0" BorderBrush="Black" Grid.ColumnSpan="2"/>
+                    <TextBlock Margin="3">Date</TextBlock>
+                    <TextBlock Grid.Column="1"
+                               Margin="3"
+                               Text="{Binding ChallanDate, Converter={StaticResource DateTimeConverter}, ConverterParameter=Date}" />
+                </Grid>
+                
+                <!-- Driver Mobile -->
+                <Grid Grid.Row="4" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border BorderThickness="0, 1, 1, 0" BorderBrush="Black" Grid.ColumnSpan="2"/>
+                    <TextBlock Margin="3">Driver Mobile</TextBlock>
+                    <TextBlock Grid.Column="1"
+                               Margin="3"
+                               Text="{Binding DriverMobile}"/>
+                </Grid>
+                
+                <!-- vehicle no-->
+                <Grid Grid.Row="5" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border BorderThickness="0, 1, 1, 0" BorderBrush="Black" Grid.ColumnSpan="2"/>
+                    <TextBlock Margin="3">Vehicle No</TextBlock>
+                    <TextBlock Grid.Column="1"
+                               Margin="3"
+                               Text="{Binding VehicleNo}"/>
+                </Grid>
+
+                <!-- consignment note no./date-->
+                <Grid Grid.Row="6" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border BorderThickness="0, 1, 1, 0" BorderBrush="Black" Grid.ColumnSpan="2"/>
+                    <TextBlock Margin="3">Consignment Note No./Date</TextBlock>
+                    <TextBlock Grid.Column="1"
+                               Margin="3"
+                               Text="{Binding ConsignmentNoteNo}"/>
+                </Grid>
+
+                <!-- From -->
+                <Grid Grid.Row="7" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border BorderThickness="0, 1, 1, 0" BorderBrush="Black" Grid.ColumnSpan="2"/>
+                    <TextBlock Margin="3">From</TextBlock>
+                    <TextBlock Grid.Column="1" 
+                               Margin="3" 
+                               Text="G. Noida"
+                               TextWrapping="Wrap"/>
+                </Grid>
+
+                <!-- To -->
+                <Grid Grid.Row="8" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border BorderThickness="0, 1, 1, 0" BorderBrush="Black" Grid.ColumnSpan="2"/>
+                    <TextBlock Margin="3">To</TextBlock>
+                    <TextBlock Grid.Column="1" 
+                               Margin="3"
+                               Text="{Binding OrderForm.Client.MainAddress}" 
+                               TextWrapping="Wrap"/>
+                </Grid>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>
