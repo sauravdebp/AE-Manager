@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Manager.Utilities;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.Data;
+using System.Threading.Tasks;
+using Manager.Utilities;
 
 namespace Manager.DataModels
 {

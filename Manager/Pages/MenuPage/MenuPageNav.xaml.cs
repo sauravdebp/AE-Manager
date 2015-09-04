@@ -14,19 +14,16 @@ namespace Manager.Pages
 
         private void but_NewOrder_Click(object sender, RoutedEventArgs e)
         {
-            //PageLoader.LoadPage(typeof(NewOrderPage));
             PageLoader.LoadPage(new NewOrderPage(PageLoader));
         }
 
         private void but_AllOrders_Click(object sender, RoutedEventArgs e)
         {
-            //PageLoader.LoadPage(typeof(AllOrdersPage));
             PageLoader.LoadPage(new AllOrdersPage(PageLoader));
         }
 
         private void but_Inventory_Click(object sender, RoutedEventArgs e)
         {
-            //PageLoader.LoadPage(typeof(InventoryPage));
             PageLoader.LoadPage(new InventoryPage(PageLoader));
         }
     }

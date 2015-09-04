@@ -29,7 +29,7 @@ namespace Manager
             InitializeComponent();
             SetPanels(ContentArea, NavContentArea, SideContentArea);
             DataContext = this;
-            PageLoadedEvent += MainWindow_PageLoadedEvent;
+            //PageLoadedEvent += MainWindow_PageLoadedEvent;
             LoadPage(new MenuPage(this));
         }
 

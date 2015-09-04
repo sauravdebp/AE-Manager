@@ -100,8 +100,8 @@ namespace Manager.DataModels
             }
         }
 
-        String pocNo = null;
-        public String PocNo
+        string pocNo = null;
+        public string PocNo
         {
             get { return pocNo; }
             set
@@ -114,8 +114,8 @@ namespace Manager.DataModels
             }
         }
 
-        String orderHardcopyUrl = null;
-        public String OrderHardcopyUrl
+        string orderHardcopyUrl = null;
+        public string OrderHardcopyUrl
         {
             get { return orderHardcopyUrl; }
             set
@@ -447,7 +447,7 @@ namespace Manager.DataModels
             }
         }
 
-        public async void ApproveOrder()
+        public async Task ApproveOrder()
         {
             if (!Validate())
                 throw new Exception("Cannot approve order");
@@ -469,7 +469,9 @@ namespace Manager.DataModels
 
         public async Task<Challan> RetrieveOrderChallan()
         {
-            return (Challan = await Challan.RetrieveChallanByOrder(this));
+            if(Challan == null)
+                return (Challan = await Challan.RetrieveChallanByOrder(this));
+            return Challan;
         }
 
         public void NotifyAllPropertyChanged()

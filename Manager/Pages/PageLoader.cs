@@ -11,8 +11,9 @@ namespace Manager.Pages
         StackPanel navContentArea;
         StackPanel sideContentArea;
 
-        public delegate void PageLoadedEventHandler(object sender, PageLoadedEventArgs e);
-        public event PageLoadedEventHandler PageLoadedEvent;
+        public delegate void PageActivatedEventHandler(object sender, PageLoadedEventArgs e);
+        public event PageActivatedEventHandler PageActivatedEvent;
+        public event PageActivatedEventHandler PageBackEvent;
 
         public Stack<PageBase> PageBackStack { get; private set; }
 
@@ -28,20 +29,15 @@ namespace Manager.Pages
             this.sideContentArea = sideContentArea;
         }
 
-        //public PageBase LoadPage(Type pageType, params object[] args)
-        //{
-        //    PageBase newPage = null;
-        //    if(args == null || args.Length == 0)
-        //        newPage = (PageBase)Activator.CreateInstance(pageType, this);
-        //    else
-        //        newPage = (PageBase)Activator.CreateInstance(pageType, this, args);
-        //    LoadPage(newPage);
-        //    return newPage;
-        //}
-
         public void LoadPage(PageBase page)
         {
+            if (PageBackStack.Count >= 1)
+            {
+                PageBackStack.Peek().RemovePageLoadedHandler();
+            }
             PageBackStack.Push(page);
+            page.AddPageLoadedHandler();
+
             contentArea.Children.Clear();
             navContentArea.Children.Clear();
             sideContentArea.Children.Clear();
@@ -50,8 +46,8 @@ namespace Manager.Pages
                 navContentArea.Children.Add(page.PageNav);
             if (page.PageSide != null)
                 sideContentArea.Children.Add(page.PageSide);
-            if (PageLoadedEvent != null)
-                PageLoadedEvent(this, new PageLoadedEventArgs(page, page.GetType()));
+            if (PageActivatedEvent != null)
+                PageActivatedEvent(this, new PageLoadedEventArgs(page, page.GetType()));
         }
 
         public PageBase GoBack()
@@ -59,7 +55,7 @@ namespace Manager.Pages
             PageBase prevPage = null;
             if(PageBackStack.Count > 1)
             {
-                PageBackStack.Pop();
+                PageBackStack.Pop().RemovePageLoadedHandler();
                 prevPage = PageBackStack.Pop();
                 if (prevPage != null)
                     LoadPage(prevPage);

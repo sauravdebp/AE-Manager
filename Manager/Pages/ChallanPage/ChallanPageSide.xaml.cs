@@ -59,5 +59,10 @@ namespace Manager.Pages
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        public void NotifyChallanPropertyChanged()
+        {
+            NotifyPropertyChanged(nameof(Challan));
+        }
     }
 }

@@ -27,8 +27,7 @@ namespace Manager.Pages
 
         public Challan OrderChallan { get; set; }
 
-        public ChallanPageNav(PageLoader pageLoader, Challan orderChallan, ChallanPage pageRef)
-            : base(pageLoader)
+        public ChallanPageNav(PageLoader pageLoader, Challan orderChallan, ChallanPage pageRef) : base(pageLoader)
         {
             InitializeComponent();
             DataContext = this;
@@ -49,6 +48,7 @@ namespace Manager.Pages
             finally
             {
                 NotifyPropertyChanged("OrderChallan");
+                (challanPageRef.PageSide as ChallanPageSide).NotifyChallanPropertyChanged();
             }
         }
 

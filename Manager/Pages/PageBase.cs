@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using System.Windows.Controls;
 
 namespace Manager.Pages
@@ -18,12 +14,18 @@ namespace Manager.Pages
         public PageBase(PageLoader pageLoader)
         {
             PageLoader = pageLoader;
-            PageLoader.PageLoadedEvent += OnPageLoaded;
         }
 
-        protected virtual void OnPageLoaded(object sender, PageLoadedEventArgs e)
+        public void AddPageLoadedHandler()
         {
-            
+            PageLoader.PageActivatedEvent += OnPageLoaded;
         }
+
+        public void RemovePageLoadedHandler()
+        {
+            PageLoader.PageActivatedEvent -= OnPageLoaded;
+        }
+
+        protected virtual void OnPageLoaded(object sender, PageLoadedEventArgs e) { }
     }
 }

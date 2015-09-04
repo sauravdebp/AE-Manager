@@ -70,7 +70,7 @@
     </ApplicationDefinition>
     <Compile Include="DataModels\Challan.cs" />
     <Compile Include="DataModels\ChallanType.cs" />
-    <Compile Include="DataModels\CustomException\CustomException.cs" />
+    <Compile Include="DataModels\IOperationValidity\CustomException\CustomException.cs" />
     <Compile Include="DataModels\IOperationValidity\Challan.cs" />
     <Compile Include="DataModels\IOperationValidity\Client.cs" />
     <Compile Include="DataModels\IOperationValidity\OrderForm.cs" />

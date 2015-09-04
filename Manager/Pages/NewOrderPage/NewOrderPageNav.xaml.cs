@@ -59,11 +59,11 @@ namespace Manager.Pages
             NotifyPropertyChanged("MyOrder");
         }
 
-        private void but_ApproveOrder_Click(object sender, RoutedEventArgs e)
+        private async void but_ApproveOrder_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                MyOrder.ApproveOrder();
+                await MyOrder.ApproveOrder();
             }
             catch (Exception ex)
             {
@@ -80,6 +80,11 @@ namespace Manager.Pages
             PageLoader.LoadPage(new ChallanPage(PageLoader, MyOrder));
         }
 
+        private async void but_ViewChallan_Click(object sender, RoutedEventArgs e)
+        {
+            PageLoader.LoadPage(new ChallanPage(PageLoader, await MyOrder.RetrieveOrderChallan()));
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         void NotifyPropertyChanged(string propertyName)
@@ -91,9 +96,9 @@ namespace Manager.Pages
             }
         }
 
-        private async void but_ViewChallan_Click(object sender, RoutedEventArgs e)
+        public void NotifyOrderFormChanged()
         {
-            PageLoader.LoadPage(new ChallanPage(PageLoader, await MyOrder.RetrieveOrderChallan()));
+            NotifyPropertyChanged(nameof(MyOrder));
         }
     }
 }

@@ -234,6 +234,7 @@ namespace Manager.DataModels
 
         public override bool Validate()
         {
+
             return true;
         }
 
@@ -306,16 +307,12 @@ namespace Manager.DataModels
                     sqlCmd.Transaction = myDb.InitiateTransaction();
                     sqlCmd.ExecuteNonQuery();
                     IsPersist = true;
+                    OrderForm.Challan = this;
                 }
-                catch (IOException ex)
+                catch(Exception ex)
                 {
-                    GlobalAppStatus.AppStatus.StatusMessage(ex.Message, GlobalAppStatus.MessageType.ERROR);
                     myDb.EndTransaction(true);
-                }
-                catch (SqlException ex)
-                {
-                    GlobalAppStatus.AppStatus.StatusMessage(ex.Message, GlobalAppStatus.MessageType.ERROR);
-                    myDb.EndTransaction(true);
+                    throw ex;
                 }
                 finally
                 {

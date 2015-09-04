@@ -14,7 +14,7 @@
     </local:PageBase.Resources>
 
     <Grid>
-        <StackPanel>
+        <StackPanel Visibility="{Binding Challan, Converter={StaticResource VisibilityConverter}, ConverterParameter=GenerateChallan}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />

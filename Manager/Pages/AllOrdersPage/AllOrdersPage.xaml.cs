@@ -91,7 +91,7 @@ namespace Manager.Pages
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        void NotifyPropertyChanged(String propertyName)
+        void NotifyPropertyChanged(string propertyName)
         {
             var handler = PropertyChanged;
             if(handler != null)
@@ -109,6 +109,12 @@ namespace Manager.Pages
                        select t;
             OrderFormsList = new ObservableCollection<OrderForm>(list);
             NotifyPropertyChanged("OrderFormsList");
+        }
+
+        protected override void OnPageLoaded(object sender, PageLoadedEventArgs e)
+        {
+            base.OnPageLoaded(sender, e);
+            (PageNav as AllOrdersPageNav).NotifyOrderFormChanged();
         }
     }
 }

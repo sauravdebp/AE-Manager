@@ -58,6 +58,7 @@ namespace Manager.Pages
         protected override void OnPageLoaded(object sender, PageLoadedEventArgs e)
         {
             base.OnPageLoaded(sender, e);
+            (PageNav as NewOrderPageNav).NotifyOrderFormChanged();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
